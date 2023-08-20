@@ -1,14 +1,23 @@
-import { createStore } from 'vuex'
+import { createStore } from 'vuex';
 
 export default createStore({
   state: {
-  },
-  getters: {
+    isAuthenticated: false,
   },
   mutations: {
+    setAuthenticated(state, value) {
+      state.isAuthenticated = value;
+    },
   },
   actions: {
+    fakeLogin({ commit }) {
+      commit('setAuthenticated', true); // Используйте setAuthenticated мутацию
+    },
+    logout({ commit }) {
+      commit('setAuthenticated', false); // Используйте setAuthenticated мутацию
+    },
   },
-  modules: {
-  }
-})
+  getters: {
+    isAuthenticated: state => state.isAuthenticated,
+  },
+});

@@ -1,5 +1,10 @@
-import { createRouter, createWebHashHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+// router/index.js
+import { createRouter, createWebHashHistory } from 'vue-router';
+import HomeView from '../views/HomeView.vue';
+import Login from '../views/LoginView.vue';
+import Profile from '../views/ProfileVue.vue';
+import TicketList from '../views/TicketVue.vue';
+import store from "@/store";
 
 const routes = [
   {
@@ -8,18 +13,34 @@ const routes = [
     component: HomeView
   },
   {
-    path: '/about',
-    name: 'about',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
+    path: '/login',
+    name: 'login',
+    component: Login
+  },
+  {
+    path: '/profile',
+    name: 'profile',
+    component: Profile
+  },
+  {
+    path: '/ticket',
+    name: 'ticket',
+    component: TicketList
   }
-]
+];
 
 const router = createRouter({
   history: createWebHashHistory(),
-  routes
-})
+  routes,
+});
 
-export default router
+// Добавьте этот блок только если используете beforeEach для защиты маршрутов
+router.beforeEach((to, from, next) => {
+  if ((to.path === '/ticket' || to.path === '/profile') && !store.state.isAuthenticated) {
+    next('/login');
+  } else {
+    next();
+  }
+});
+
+export default router;
