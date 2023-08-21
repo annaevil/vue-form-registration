@@ -10,9 +10,7 @@
 
 export default {
   data() {
-    return {
-      title: 'Привет, пидор!'
-    }
+    
   },
 
 }
