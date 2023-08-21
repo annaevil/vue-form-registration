@@ -61,7 +61,7 @@ export default {
     async login() {
       await this.fakeLogin();
 
-      this.$store.commit('setAuthenticated', true); // Используйте this.$store.commit
+      this.$store.commit('setAuthenticated', true); // this.$store.commit
       this.$router.push('/profile'); // Перенаправление на страницу профиля
     },
   },
