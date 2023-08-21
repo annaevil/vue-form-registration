@@ -11,10 +11,10 @@ export default createStore({
   },
   actions: {
     fakeLogin({ commit }) {
-      commit('setAuthenticated', true); // Используйте setAuthenticated мутацию
+      commit('setAuthenticated', true); // мутация
     },
     logout({ commit }) {
-      commit('setAuthenticated', false); // Используйте setAuthenticated мутацию
+      commit('setAuthenticated', false); // setAuthenticated мутация
     },
   },
   getters: {
