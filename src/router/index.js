@@ -34,7 +34,7 @@ const router = createRouter({
   routes,
 });
 
-// Добавьте этот блок только если используете beforeEach для защиты маршрутов
+//beforeEach для защиты маршрутов
 router.beforeEach((to, from, next) => {
   if ((to.path === '/ticket' || to.path === '/profile') && !store.state.isAuthenticated) {
     next('/login');
